@@ -1,73 +1,55 @@
-# React + TypeScript + Vite
+# ProfileCard React App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean, responsive Profile Card component built with React, TypeScript, and Tailwind CSS, scaffolded with Vite.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Typed React component with well-defined props interface.
+- Responsive design: full-width on mobile, max 300px width on desktop, centered.
+- Tailwind CSS for styling and hover effects.
+- Dockerized production-ready image for easy deployment.
 
-## React Compiler
+## Project Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Clone this repository:
+   ```
+   git clone https://github.com/Mr-Ndi/profilecard
+   cd profilecard
+   ```
 
-## Expanding the ESLint configuration
+2. Install dependencies:
+   ```
+   npm install
+   ```
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+3. Run the development server:
+   ```
+   npm run dev
+   ```
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Docker Image
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+You can pull and run the latest production image from Docker Hub:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+docker pull ninshuti/profilecard-app
+docker run -p 8080:80 ninshuti/profilecard-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+1. Basic real-time logs:
+   ```
+   gdocker logs -f <container_id_or_name>
+   ```
+Visit `http://localhost:8080` to see the app.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Deploying
+
+The image is ready to deploy on platforms like Render, Docker Hub, or any container service.
+
+- Image: `ninshuti/profilecard-app`
+- Built with multi-stage Dockerfile for minimal production size.
+- No special environment variables are required for static frontend deployment.
 ```
